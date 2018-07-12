@@ -7,7 +7,7 @@ public class User {
     public Long id;
     public String idStr;
     public String name;
-    public String screenName;
+    public String screen_name;
     public String location;
     public String url;
     public String description;
