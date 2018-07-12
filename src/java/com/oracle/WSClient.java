@@ -32,8 +32,6 @@ public class WSClient {
     public static String requestItem() {
         Client client = ClientBuilder.newClient();
 
-//        WebTarget target = client.target("http://localhost:8080/statictweets");
-//        Response s = target.request().get();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -42,21 +40,33 @@ public class WSClient {
         try {
             Tweets twt = objectMapper.readValue(new URL("http://localhost:8080/statictweets"), Tweets.class);
 
-            filterOutput = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(twt);
-            //filterOutput += twt.getId();
-// Tweet t = new Tweet();
-//            Long ID = t.id;
-//            System.out.println(ID);
-            System.out.println(twt);
+            filterOutput += "<table>";
+            int count = twt.tweets.size();
+            int stepCount = 0;
+
+            for (int i = 0; i < twt.tweets.size(); i++) {
+                if (twt.tweets.get(i).id != null) {
+                    filterOutput += "<tr><td>";
+                    filterOutput += twt.tweets.get(i).user.name + "</td>";
+                    filterOutput += "</tr>";
+                    filterOutput += "<tr><td>";
+                    filterOutput += "@" + twt.tweets.get(i).user.screen_name + "</td>";
+                    filterOutput += "</tr>";
+                    filterOutput += "<tr><td>";
+                    filterOutput += twt.tweets.get(i).text + "</td>";
+                    filterOutput += "</tr>";
+                    filterOutput += "<tr><td>";
+                    filterOutput += "==========================================" + "</td>";
+                    filterOutput += "</tr>";
+                }
+            }
+            int f = stepCount;
+            filterOutput += "</table>";
+
         } catch (IOException ex) {
             Logger.getLogger(WSClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //String[] lines = output.split(",");
-        //for (String line : lines) {
-        //    output += line +"\\n";
-        //}
-//        s.close();
         return filterOutput;
     }
 
