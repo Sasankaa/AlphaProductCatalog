@@ -6,8 +6,8 @@ public class User {
 
     public Long id;
     public String idStr;
-    public String name;
-    public String screen_name;
+    private String name;
+    private String screen_name;
     public String location;
     public String url;
     public String description;
@@ -42,5 +42,19 @@ public class User {
     public Object following;
     public Object followRequestSent;
     public Object notifications;
+    
+     /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the screen_name
+     */
+    public String getScreen_name() {
+        return screen_name;
+    }
 
 }
