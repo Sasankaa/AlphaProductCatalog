@@ -28,17 +28,23 @@ import java.util.Map;
  * @author sasanka
  */
 public class WSClient {
+    
+    public  static String testJSP(String str) {
+        return str.toLowerCase();
+    }
 
-    public static String requestItem() {
+    public static Tweets requestItem() {
         Client client = ClientBuilder.newClient();
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+        Tweets twt = new Tweets();
+        
         String filterOutput = "";
         System.out.println("TRY");
         try {
-            Tweets twt = objectMapper.readValue(new URL("http://localhost:8080/statictweets"), Tweets.class);
+             twt = objectMapper.readValue(new URL("http://localhost:8080/statictweets"), Tweets.class);
 
             filterOutput += "<table>";
             int count = twt.tweets.size();
@@ -48,6 +54,7 @@ public class WSClient {
                 if (twt.tweets.get(i).id != null) {
                     filterOutput += "<tr><td>";
                     filterOutput += twt.tweets.get(i).user.name + "</td>";
+                    String IdToString = twt.tweets.get(i).user.name;
                     filterOutput += "</tr>";
                     filterOutput += "<tr><td>";
                     filterOutput += "@" + twt.tweets.get(i).user.screen_name + "</td>";
@@ -67,7 +74,7 @@ public class WSClient {
             Logger.getLogger(WSClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return filterOutput;
+        return twt;
     }
 
     private static void requestOrderById(Client client, String id) {
