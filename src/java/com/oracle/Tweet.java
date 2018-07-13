@@ -4,10 +4,10 @@ package com.oracle;
 
 public class Tweet {
 
-    public String createdAt;
+    private String created_at;
     public Long id;
     public String idStr;
-    public String text;
+    private String text;
     public String source;
     public Boolean truncated;
     public Object inReplyToStatusId;
@@ -30,5 +30,16 @@ public class Tweet {
     public String filterLevel;
     public String lang;
     public String timestampMs;
-
+/**
+     * @return the created_at
+     */
+    public String getCreated_at() {
+        return created_at;
+    }
+ /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
 }
