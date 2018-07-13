@@ -50,15 +50,14 @@
             </tr>
             <tr>
                 <td colspan="3" class="tweetRow4Td">
-                    <!--                    <div class="repliesLikesDiv">
-                                            <img src="Images/twitterReply.png" title="Reply" />~REPLIES~
-                                            <img src="Images/twitterRetweet.png" title="Retweet" />~RETWEETS~
-                                            <img src="Images/twitterLike.png" title="Like" />~LIKES~
-                                        </div>-->
+                                        <div class="repliesLikesDiv">
+                                            <img src="Images/twitterReply.png" title="Reply"/>
+                                            <img src="Images/twitterRetweet.png" title="Retweet" /><%out.print(twt.retweet_count); %>
+                                            <img src="Images/twitterLike.png" title="Like" /><% out.print(twt.favorite_count); %>
+                                        </div>
                 </td>
             </tr>
         </table>
-
         <% }%>
 
     </body>
