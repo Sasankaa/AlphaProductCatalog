@@ -4,6 +4,8 @@ package com.oracle;
 
 public class Tweet {
 
+
+
     private String created_at;
     public Long id;
     public String idStr;
@@ -21,8 +23,8 @@ public class Tweet {
     public Object place;
     public Object contributors;
     public Boolean isQuoteStatus;
-    public Integer retweetCount;
-    public Integer favoriteCount;
+    public Integer retweet_count;
+    public Integer favorite_count;
     public Entities entities;
     public Boolean favorited;
     public Boolean retweeted;
@@ -42,4 +44,5 @@ public class Tweet {
     public String getText() {
         return text;
     }
+   
 }
