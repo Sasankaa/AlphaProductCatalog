@@ -18,48 +18,48 @@
         <title>Alpha Office Page</title>
     </head>
     <body>
-         <div id="title">
+        <div id="title">
             <h1>Alpha Office Supply</h1>
         </div>
         <br>
         <br>
         <br>
-        
 
-            <% List<Tweet> tweet = WSClient.requestItem().tweets;
-                for (int i = 0; i < tweet.size(); i++) {
-                    Tweet twt = tweet.get(i); %>  
-      
-            <!-- close the loop -->
-                <table class="tweetTable">
-                    <tr>
-                        <td class="tweetRow1LeftTd">
-                            <span class="tweetNameSpan"><% out.print(twt.user.name); %></span><br /><span class="tweetScreennameSpan"><% out.print(twt.user.screen_name); %></span></td>
-                        <td class="tweetRow1MiddleTd"><img src="Images/blueACircle.png" class="blueACircle" title="Part of the AlphaOffice Big Data Initiative"/></td>
-                        <td class="tweetRow1RightTd">
-                            <label onclick="window.open('https://twitter.com/<% out.print(twt.user.screen_name); %>', '_blank');" class="tweetFollowButton" title="Follow">
-                                <img src="Images/twitterBlue.png" />Follow
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="tweetRow2Td"><% out.print(twt.text); %></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="tweetRow3Td"><% out.print(twt.timestampMs); %></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="tweetRow4Td">
-                            <!--                    <div class="repliesLikesDiv">
-                                                    <img src="Images/twitterReply.png" title="Reply" />~REPLIES~
-                                                    <img src="Images/twitterRetweet.png" title="Retweet" />~RETWEETS~
-                                                    <img src="Images/twitterLike.png" title="Like" />~LIKES~
-                                                </div>-->
-                        </td>
-                    </tr>
-                </table>
-  
-            <% }%>
+
+        <% List<Tweet> tweet = WSClient.requestItem().tweets;
+            for (int i = 0; i < tweet.size(); i++) {
+                Tweet twt = tweet.get(i); %>  
+
+        <!-- close the loop -->
+        <table class="tweetTable">
+            <tr>
+                <td class="tweetRow1LeftTd">
+                    <span class="tweetNameSpan"><% out.print(twt.user.getName()); %></span><br /><span class="tweetScreennameSpan"><% out.print("@"+twt.user.getScreen_name()); %></span></td>
+                <td class="tweetRow1MiddleTd"><img src="Images/blueACircle.png" class="blueACircle" title="Part of the AlphaOffice Big Data Initiative"/></td>
+                <td class="tweetRow1RightTd">
+                    <label onclick="window.open('https://twitter.com/<% out.print(twt.user.getScreen_name()); %>', '_blank');" class="tweetFollowButton" title="Follow">
+                        <img src="Images/twitterBlue.png" />Follow
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="tweetRow2Td"><% out.print(twt.getText()); %></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="tweetRow3Td"><% out.print(twt.getCreated_at()); %></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="tweetRow4Td">
+                    <!--                    <div class="repliesLikesDiv">
+                                            <img src="Images/twitterReply.png" title="Reply" />~REPLIES~
+                                            <img src="Images/twitterRetweet.png" title="Retweet" />~RETWEETS~
+                                            <img src="Images/twitterLike.png" title="Like" />~LIKES~
+                                        </div>-->
+                </td>
+            </tr>
+        </table>
+
+        <% }%>
 
     </body>
 </html>
