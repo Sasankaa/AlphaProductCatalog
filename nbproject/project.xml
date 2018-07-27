@@ -8,16 +8,14 @@
             <web-module-libraries>
                 <library dirs="200">
                     <file>${file.reference.com.fasterxml.jackson.core.jar}</file>
-                </library>
-                <library dirs="200">
-                    <file>${file.reference.com.fasterxml.jackson.databind.jar}</file>
-                </library>
-                <library dirs="200">
-                    <file>${file.reference.com.fasterxml.jackson.core.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.com.fasterxml.jackson.databind.jar-1}</file>
+                    <file>${file.reference.com.fasterxml.jackson.databind.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.ws.rs-api-2.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
