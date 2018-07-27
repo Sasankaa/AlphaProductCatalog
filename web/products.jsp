@@ -22,7 +22,7 @@
     <body>
         <h1>Alpha Office Page</h1>
 
-        <% List<Product_> productList = getProducts.requestProducts();
+        <% List<Product_> productList = getProducts.requestProducts().products;
             for (int i = 0; i < productList.size(); i++) {
                 Product_ product = productList.get(i); %>
 
