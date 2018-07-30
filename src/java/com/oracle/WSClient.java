@@ -37,13 +37,6 @@ public class WSClient {
     public static List<Tweet> requestFilter(String param) {
         List<Tweet> tweet = WSClient.requestItem().tweets;
         List<Tweet> tweet1 = new ArrayList<>();
-
-        //for (int i = 0; i < tweet.size(); i++) {       
-        //        Tweet twt = tweet.get(i); 
-        //        if(!twt.getText().contentEquals(param)){
-        //          tweet.remove(i);
-        //        }
-        // }
         try {
             Iterator itr = tweet.iterator();
             while (itr.hasNext()) {
