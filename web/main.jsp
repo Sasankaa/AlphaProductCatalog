@@ -18,28 +18,29 @@
               crossorigin="anonymous"/>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
                 integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-                crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
         <title>Alpha Office Page</title>
     </head>
     <body>
-        <div id="title">
-            <h1>Alpha Office Supply</h1>
-        </div>
-        <br/>
-         
-        <br/>
-         
-        <br/>
-         
-        <% List<Tweet> tweet = WSClient.requestItem().tweets;
-            for (int i = 0; i < tweet.size(); i++) {
-                Tweet twt = tweet.get(i); %><!-- close the loop -->
+
+Parameter param: <%= request.getParameter("param") %>
+
+        <%
+            List<Tweet> tweet = WSClient.requestItem(request.getParameter("param")).tweets;
+            //tweet.removeIf(p -> p.getText().contentEquals(request.getParameter("param")));
+            for (int i = 0; i < tweet.size(); i++) {       
+                Tweet twt = tweet.get(i); 
+                
+ 
+                
+        %><!-- close the loop -->
+        
         <table class="tweetTable">
             <tr>
                 <td class="tweetRow1LeftTd">
                     <span class="tweetNameSpan">
                         <% out.print(twt.user.getName()); %></span><br/><span class="tweetScreennameSpan">
-                        <% System.out.print("@"+twt.user.getScreen_name()); %></span>
+                        <% System.out.print("@" + twt.user.getScreen_name()); %></span>
                 </td>
                 <td class="tweetRow1MiddleTd">
                     <img src="Images/blueACircle.png" class="blueACircle"
@@ -53,26 +54,26 @@
                     </label>
                 </td>
             </tr>
-             
+
             <tr>
                 <td colspan="3" class="tweetRow2Td">
                     <% out.print(twt.getText()); %>
                 </td>
             </tr>
-             
+
             <tr>
                 <td colspan="3" class="tweetRow3Td">
                     <% out.print(twt.getCreated_at()); %>
                 </td>
             </tr>
-             
+
             <tr>
                 <td colspan="3" class="tweetRow4Td">
                     <div class="repliesLikesDiv">
                         <img src="Images/twitterReply.png" title="Reply"/>
-                         
+
                         <img src="Images/twitterRetweet.png" title="Retweet"/><%out.print(twt.retweet_count); %>
-                         
+
                         <img src="Images/twitterLike.png" title="Like"/><% out.print(twt.favorite_count); %>
                     </div>
                 </td>

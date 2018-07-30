@@ -11,7 +11,7 @@ public class Tweet {
     public String idStr;
     private String text;
     public String source;
-    public Boolean truncated;
+    public Boolean tRSuncated;
     public Object inReplyToStatusId;
     public Object inReplyToStatusIdStr;
     public Object inReplyToUserId;
