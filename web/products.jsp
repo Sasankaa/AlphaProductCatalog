@@ -21,68 +21,89 @@
                 integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
         <script>
-        function popup(){
-               window.open("http://localhost:9999/build/main.jsp",'Image','width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
+            function popup() {
+                window.open("http://localhost:9999/build/main.jsp", 'Image', 'width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
 
-        }    
+            }
         </script>
     </head>
     <body>
+
         <div id="title">
             <h1>Alpha Office Supply<span id="podColor"></span></h1>
         </div>
-        <br>
-        <br>
-        <%
-            List<Product> productList = WSProductClient.requestItem().Products;
-            //for (int i = 0; i < productList.size(); i++) {
-            int i = 0;
-            while (i < productList.size()) {
-        %>
-        
-        <table style="border-spacing:0px">
-            <tr>
-                <td class="productTd">
-                        <% Product productR1 = productList.get(i);%>
-                        <% out.print("<img src='" + productR1.EXTERNAL_URL + "' border='0';class=productImage; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>
-                        <br>
-                        <div class="productNameDiv">
-                            <% out.print(productR1.PRODUCT_NAME); %><br>
-                        Price: $ <% out.print(productR1.LIST_PRICE); %>
-                        
+        <div class="container">
+            <br>
+            <br>
+            <%
+                List<Product> productList = WSProductClient.requestItem().Products;
+                //for (int i = 0; i < productList.size(); i++) {
+                int i = 0;
+                while (i < productList.size()) {
+            %>
+
+            <table  class=".table-borderless">
+                <tr>
+                    <td class="productTd "  style="width: 25%">
+                        <div class="card">
+                            <% Product productR1 = productList.get(i);%>
+
+                            <% out.print("<img class='productImage card-img-top' src='" + productR1.EXTERNAL_URL + "'border='0'; onClick=window.open('main.jsp','mywindow','width=600,height=800');>");%>
+
+                            <br>
+                            <div class="productNameDiv  card-body">
+
+                                <% out.print(productR1.PRODUCT_NAME); %><br>
+                                Price: $ <% out.print(productR1.LIST_PRICE); %>
+
+                            </div>
+                            <%i++;%>
                         </div>
-                        <%i++;%>
-                        
-                </td>
-                <td class="productTd">
-                        <% Product productR2 = productList.get(i);%>                       
-                        <% out.print("<img src='" + productR2.EXTERNAL_URL + "' border='0';class=productImageon; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>
-                        <br>
-                        <div class="productNameDiv">
-                            <% out.print(productR2.PRODUCT_NAME); %><br>
-                        Price: $ <% out.print(productR2.LIST_PRICE); %>
-                        
+                    </td>
+                    <td class="productTd" style="width: 25%">
+                        <div class="card">
+                            <% Product productR2 = productList.get(i);%>
+                            <% out.print("<img class='productImage card-img-top' src='" + productR2.EXTERNAL_URL + "' border='0';class=productImageon; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>
+                            <br>
+                            <div class="productNameDiv card-body">
+                                <p class="card-text">
+                                    <% out.print(productR2.PRODUCT_NAME); %><br>
+                                    Price: $ <% out.print(productR2.LIST_PRICE); %>
+                                </p>
+                            </div>
+                            <%i++;%>
                         </div>
-                        <%i++;%>
-
-                </td>
-                <td class="productTd">
-                        <% Product productR3 = productList.get(i);%>
-                        <% out.print("<img src='" + productR3.EXTERNAL_URL + "' border='0';class=productImage; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>
-                        <br>
-                        <div class="productNameDiv">
-                            <% out.print(productR3.PRODUCT_NAME); %><br>
-                        Price: $ <% out.print(productR3.LIST_PRICE); %>
-                        
+                    </td>
+                    <td class="productTd" style="width: 25%">
+                        <div class="card">
+                            <% Product productR3 = productList.get(i);%>
+                            <% out.print("<img class='productImage card-img-top' src='" + productR3.EXTERNAL_URL + "' border='0';class=productImage; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>                 
+                            <br>
+                            <div class="productNameDiv card-body">
+                                <p class="card-text ">
+                                    <% out.print(productR3.PRODUCT_NAME); %><br>
+                                    Price: $ <% out.print(productR3.LIST_PRICE); %>
+                                </p>
+                            </div>
+                            <%i++;%>
                         </div>
-                        <%i++;%>
-                </td>
-            </tr>
-        </table>
-
-
-
-        <% }%>
-        
+                    </td>
+                    <td class="productTd" style="width: 25%">
+                        <div class="card">
+                            <% Product productR4 = productList.get(i);%>
+                            <% out.print("<img class='productImage card-img-top' src='" + productR4.EXTERNAL_URL + "' border='0';class=productImage; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>                 
+                            <br>
+                            <div class="productNameDiv  card-body">
+                                <p class="card-text">  <% out.print(productR3.PRODUCT_NAME); %><br>
+                                    Price: $ <% out.print(productR3.LIST_PRICE); %>
+                                </p>
+                            </div>
+                            <%i++;%>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <% }%>
+        </div>
     </body>
 </html>
