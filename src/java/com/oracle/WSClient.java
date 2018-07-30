@@ -11,7 +11,11 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.List;
+import com.oracle.Tweet;
+import com.oracle.Tweets;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class WSClient {
 
@@ -23,11 +27,35 @@ public class WSClient {
 
         try {
             twt = objectMapper.readValue(new URL("https://rawgit.com/varunyn/f4eecf76915ac6bebb962140f0320a02/raw/8e42d5424052f187ef9563a8c949735998e6ad2e/tweets.json"), Tweets.class);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(WSClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         return twt;
     }
-    
+
+    public static List<Tweet> requestFilter(String param) {
+        List<Tweet> tweet = WSClient.requestItem().tweets;
+        List<Tweet> tweet1 = new ArrayList<>();
+
+        //for (int i = 0; i < tweet.size(); i++) {       
+        //        Tweet twt = tweet.get(i); 
+        //        if(!twt.getText().contentEquals(param)){
+        //          tweet.remove(i);
+        //        }
+        // }
+        try {
+            Iterator itr = tweet.iterator();
+            while (itr.hasNext()) {
+                Tweet twt = (Tweet) itr.next();
+                //Tweet twt = tweet.get(x); 
+                if (twt.getText().contains(param)) {
+                    tweet1.add(twt);//itr.remove();
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+        return tweet1;
+    }
+
 }

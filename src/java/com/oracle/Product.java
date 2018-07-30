@@ -25,7 +25,7 @@ public class Product {
 //
     public Object EXTERNAL_URL;
 //
-    public Object TWITTER_TAG;
+    public String TWITTER_TAG;
 //    
     public Object ATTRIBUTE_CATEGORY;
 //    

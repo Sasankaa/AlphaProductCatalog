@@ -21,8 +21,8 @@
                 integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
         <script>
-        function popup(){
-               window.open("http://localhost:9999/build/main.jsp",'Image','width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
+        function popup(param){
+               window.open("http://localhost:9999/build/main.jsp?param=",'Image','width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
 
         }    
         </script>
@@ -44,7 +44,8 @@
             <tr>
                 <td class="productTd">
                         <% Product productR1 = productList.get(i);%>
-                        <% out.print("<img src='" + productR1.EXTERNAL_URL + "' border='0';class=productImage; onClick=window.open('main.jsp','mywindow','width=600,height=800');>"); %>
+                        
+                        <% out.print("<img src='" + productR1.EXTERNAL_URL + "' border='0';class=productImage; onClick=window.open('main.jsp?param=" + productR1.TWITTER_TAG + "','mywindow','width=600,height=800');>"); %>
                         <br>
                         <div class="productNameDiv">
                             <% out.print(productR1.PRODUCT_NAME); %><br>
