@@ -6,6 +6,7 @@
 
 <%@page import="com.oracle.WSProductClient"%>
 <%@page import="com.oracle.Product"%>
+<%@page import="com.oracle.Products"%>
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,32 +30,8 @@
         </div>
 
         <div class="container">
-            <!-- The Modal -->
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modal Heading</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <iframe src="main.jsp?param=Crayola" width="400"></iframe>
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
             <br>
+
             <br>
             <%
                 List<Product> productList = WSProductClient.requestItem().Products;
@@ -65,29 +42,56 @@
 
             <table  class=".table-borderless">
                 <tr>
-                    <td class="productTd "  style="width: 25%">
+                    <td class="productTd" data-toggle="modal" data-target="#myModal"  style="width: 25%">
                         <div class="card">
-                            <% Product productR1 = productList.get(i);%>
+                            <% Product productR1 = productList.get(i); %>
+                            <%! String tag = "abc";%>
+                            <% tag = productR1.TWITTER_TAG; %>
 
-                            <% out.print("<img class='productImage card-img-top' src='" + productR1.EXTERNAL_URL + "'border='0'; onClick=window.open('main.jsp?param=" + productR1.TWITTER_TAG + "','mywindow','width=600,height=800');>");%>
+
+
+                            <% out.print("<img class='productImage card-img-top' src='" + productR1.EXTERNAL_URL + "');>");%>
 
                             <br>
-                            <div class="productNameDiv  card-body">
+                            <div class="productNameDiv card-body" >
 
                                 <% out.print(productR1.PRODUCT_NAME); %><br>
-                                Price: $ <% out.print(productR1.LIST_PRICE); %>
+                                Price: $ <% out.print(productR1.LIST_PRICE); %><br>
 
                             </div>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                View
-                            </button>
+
                             <%i++;%>
                         </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Modal Heading</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <iframe src="main.jsp?param=<%= tag%>" style="width: 100%; height: 600px;"></iframe>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </td>
                     <td class="productTd" style="width: 25%">
                         <div class="card">
                             <% Product productR2 = productList.get(i);%>
-                            <% out.print("<img class='productImage card-img-top' src='" + productR2.EXTERNAL_URL + "' border='0';class=productImageon; onClick=window.open('main.jsp?param=" + productR2.TWITTER_TAG + "','mywindow','width=600,height=800');>"); %>
+                            <% out.print("<img class='productImage card-img-top'  src='" + productR2.EXTERNAL_URL + "' border='0';class=productImageon; onClick=window.open('main.jsp?param=" + productR2.TWITTER_TAG + "','mywindow','width=600,height=800');>"); %>
                             <br>
                             <div class="productNameDiv card-body">
                                 <p class="card-text">
@@ -128,8 +132,8 @@
                 </tr>
             </table>
             <% }%>
+
         </div>
- 
 
     </body>
 </html>
