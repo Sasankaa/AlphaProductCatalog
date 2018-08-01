@@ -22,7 +22,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-  
+function reload() {
+  document.getElementById('iFrameID').contentDocument.location.reload(true);
+}
         </script>
     </head>
     <body>
@@ -46,7 +48,7 @@
             <table  class=".table-borderless">
                 <tr>
                     <%for (int j = 0; j < 4; j++) { %>
-                    <td class="productTd" data-toggle="modal" data-target="#myModal"  style="width: 25%">
+                    <td class="productTd" data-toggle="modal" data-target="#modal<%=i%>"  style="width: 25%">
                         <div class="card">
                             <% Product productR1 = productList.get(i); %>
 
@@ -63,21 +65,23 @@
                                 Price: $ <% out.print(productR1.LIST_PRICE); %><br>
                                 <% out.print(i);%>
                             </div>
+                              </td>
                             <!-- The Modal -->
-                            <div class="modal" id="myModal" tabindex="-1" role="dialog">
+                            <div class="modal" id="modal<%=i%>" tabindex="-1" role="dialog">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">Modal Heading</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <button type="button" class="close" data-dismiss="modal" onclick="reload()">&times;</button>
                                         </div>
 
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                            <iframe src="main.jsp?param=<%= tag%>" style="width: 100%; height: 600px;"> </iframe>
-                                                <% out.print(i); %>
+                                            
+                                            <iframe id="iFrameID" src="main.jsp?param=<%= tag%>" style="width: 100%; height: 600px;" ng-onload="page.handleFrameLoaded(event)"> </iframe>
+                                                <% out.print(tag); %>
                                         </div>
 
                                         <!-- Modal footer -->
@@ -88,7 +92,7 @@
                                     </div>
                                 </div>
                             </div> 
-
+                      
                             <%i++;%>
                         </div>
 
