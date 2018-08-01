@@ -21,29 +21,38 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Archivo|Montserrat|Rokkitt" rel="stylesheet">
 
         <script type="text/javascript">
              <!-- Handle data for the modal --> 
             function popUpTheModal(tag, titl) {
+                setTimeout(function () {
+                    $('.loading-spinner').addClass('hidden');
+                }, 1000);
                 $('#myModal').modal('toggle');
                 var iFrame = '<iframe src="main.jsp?param=' + tag + '" style="width: 100%; height: 600px;"></iframe>';
                 $('.modal-body').html(iFrame);
                 var title = '<p>' + titl + '</p>';
                 $('.modal-title').html(title);
-            }
+                $('.loading-spinner').removeClass('hidden');
+                }
+            
         </script>
     </head>
 
     <body>
-        <div id="title">
-            <h1>Alpha Office Supply<span id="podColor"></span></h1>
+<div class="loading-spinner hidden">
         </div>
+        <div id="title">
+            <h2>Alpha Office Supply<span id="podColor"></span></h2>
+        </div>
+
 
         <div class="container">
             <br>
             <br>
 
-            <%
+           <%
                 List<Product> productList = WSProductClient.requestItem().Products;
                 //for (int i = 0; i < productList.size(); i++) {
                 int i = 0;
@@ -65,10 +74,11 @@
                             <br>
 
                             <div class="productNameDiv card-body" >
-                                <% out.print(productR1.PRODUCT_NAME); %><br>
-                                Price: $ <% out.print(productR1.LIST_PRICE); %><br>
-                                <% out.print(i);%>
+                                <a ><% out.print(productR1.PRODUCT_NAME); %></a><br>
+                                <a class="bold">Price: $ </a><% out.print(productR1.LIST_PRICE); %><br>
+
                             </div>
+                           
                         </div>
                     </td>
 
@@ -103,6 +113,8 @@
             </div>
             <% }%>
         </div>
+
     </body>
+
 </html>
 
