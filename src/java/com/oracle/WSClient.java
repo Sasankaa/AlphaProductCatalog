@@ -36,19 +36,19 @@ public class WSClient {
 
     public static List<Tweet> requestFilter(String param) {
         List<Tweet> tweet = WSClient.requestItem().tweets;
-        List<Tweet> tweet1 = new ArrayList<>();
+        List<Tweet> tweets = new ArrayList<>();
         try {
             Iterator itr = tweet.iterator();
             while (itr.hasNext()) {
                 Tweet twt = (Tweet) itr.next();
                 //Tweet twt = tweet.get(x); 
                 if (twt.getText().contains(param)) {
-                    tweet1.add(twt);//itr.remove();
+                    tweets.add(twt);//itr.remove();
                 }
             }
         } catch (NullPointerException e) {
         }
-        return tweet1;
+        return tweets;
     }
 
 }

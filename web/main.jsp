@@ -24,15 +24,11 @@
     <body>
 
         <%
-            List<Tweet> tweet1 = WSClient.requestItem().tweets;
             List<Tweet> tweet = WSClient.requestFilter(request.getParameter("param"));
             //tweet.removeIf(p -> p.getText().contentEquals(request.getParameter("param")));
             for (int i = 0; i < tweet.size(); i++) {
                 Tweet twt = tweet.get(i);
-
-//if(twt.getText().contentEquals(str)){  
-
-        %><!-- close the loop -->
+        %>
 
         <table class="tweetTable">
             <tr>
@@ -46,9 +42,9 @@
                          title="Part of the AlphaOffice Big Data Initiative"/>
                 </td>
                 <td class="tweetRow1RightTd">
-                    <label onclick="window.open('https://twitter.com/&lt;% System.out.print(twt.user.getScreen_name()); %>', '_blank');"
+                    <label onclick="window.open('https://twitter.com/<%= twt.user.getScreen_name() %>', '_blank');"
                            class="tweetFollowButton" title="Follow">
-                        <img src=" "/>
+                        <img src="Images/twitterBlue.png"/>
                         Follow
                     </label>
                 </td>
@@ -62,7 +58,9 @@
 
             <tr>
                 <td colspan="3" class="tweetRow3Td">
-                    <% out.print(twt.getCreated_at()); %>
+                    <%! String date; %>
+                    <% date = twt.getCreated_at().substring(0, twt.getCreated_at().indexOf("+")); %>
+                    <% out.print(date); %>
                 </td>
             </tr>
 
@@ -70,9 +68,7 @@
                 <td colspan="3" class="tweetRow4Td">
                     <div class="repliesLikesDiv">
                         <img src="Images/twitterReply.png" title="Reply"/>
-
                         <img src="Images/twitterRetweet.png" title="Retweet"/><%out.print(twt.retweet_count); %>
-
                         <img src="Images/twitterLike.png" title="Like"/><% out.print(twt.favorite_count); %>
                     </div>
                 </td>
@@ -80,5 +76,4 @@
         </table>
         <% }%>
     </body>
-  
 </html>
