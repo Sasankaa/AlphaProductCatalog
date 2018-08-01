@@ -23,24 +23,24 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <script type="text/javascript">
-            function popUpTheModal(data, titl) {
+             <!-- Handle data for the modal --> 
+            function popUpTheModal(tag, titl) {
                 $('#myModal').modal('toggle');
-                var iFrame = '<iframe src="main.jsp?param=' + data + '" style="width: 100%; height: 600px;"></iframe>';
+                var iFrame = '<iframe src="main.jsp?param=' + tag + '" style="width: 100%; height: 600px;"></iframe>';
                 $('.modal-body').html(iFrame);
                 var title = '<p>' + titl + '</p>';
                 $('.modal-title').html(title);
             }
         </script>
     </head>
-    <body>
 
+    <body>
         <div id="title">
             <h1>Alpha Office Supply<span id="podColor"></span></h1>
         </div>
 
         <div class="container">
             <br>
-
             <br>
 
             <%
@@ -54,22 +54,26 @@
                 <tr>
                     <%for (int j = 0; j < 4; j++) { %>
                     <td class="productTd" data-toggle="modal" data-target="modal-lg"  style="width: 25%">
+
                         <% Product productR1 = productList.get(i);%>
+                        <!-- Pass the variable to modal --> 
                         <div class="card" onclick="popUpTheModal('<%= productR1.TWITTER_TAG%>', '<%= productR1.PRODUCT_NAME%>')">
 
                             <%! String tag;%>
                             <% tag = productR1.TWITTER_TAG; %>
                             <% out.print("<img class='productImage card-img-top' src='" + productR1.EXTERNAL_URL + "');>");%>
                             <br>
+
                             <div class="productNameDiv card-body" >
                                 <% out.print(productR1.PRODUCT_NAME); %><br>
                                 Price: $ <% out.print(productR1.LIST_PRICE); %><br>
                                 <% out.print(i);%>
                             </div>
+                        </div>
                     </td>
 
                     <%i++;%>
-                    </div>
+                    <!-- End of loop for breaking the row --> 
                     <% } %>
                 </tr>
             </table>

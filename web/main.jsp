@@ -23,19 +23,17 @@
     </head>
     <body>
 
-Parameter param: <%= request.getParameter("param") %>
-
         <%
             List<Tweet> tweet1 = WSClient.requestItem().tweets;
             List<Tweet> tweet = WSClient.requestFilter(request.getParameter("param"));
             //tweet.removeIf(p -> p.getText().contentEquals(request.getParameter("param")));
-            for (int i = 0; i < tweet.size(); i++) {       
-                Tweet twt = tweet.get(i); 
-            
+            for (int i = 0; i < tweet.size(); i++) {
+                Tweet twt = tweet.get(i);
+
 //if(twt.getText().contentEquals(str)){  
-                
+
         %><!-- close the loop -->
-        
+
         <table class="tweetTable">
             <tr>
                 <td class="tweetRow1LeftTd">

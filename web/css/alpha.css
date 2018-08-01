@@ -11,7 +11,7 @@ and open the template in the editor.
 
 html { 
     background: url(../Images/bg.jpg) no-repeat center center fixed; 
-    background-color:#AABCC2;
+    
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
