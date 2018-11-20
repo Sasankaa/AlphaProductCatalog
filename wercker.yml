@@ -4,11 +4,3 @@ box:
   ports:
     - 8080
 
-#Build our application using Maven, just as we always have
-build:
-  steps:
-    - install-packages:
-        packages: maven
-    - script:
-        name: maven build
-        code: mvn clean assembly:assembly
