@@ -22,6 +22,7 @@ public class WSClient {
     public static Tweets requestItem() {
 //        Client client = ClientBuilder.newClient();
         ObjectMapper objectMapper = new ObjectMapper();
+        ATPDBUtils.getConnection();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Tweets twt = new Tweets();
 
