@@ -36,7 +36,34 @@
                 $('.modal-title').html(title);
                 $('.loading-spinner').removeClass('hidden');
                 }
-            
+            function popUpDeleteModal(tag, titl) {
+                setTimeout(function () {
+                    $('.loading-spinner').addClass('hidden');
+                }, 1000);
+                $('#DeleteModal').modal('toggle');
+                var iFrame = '<iframe src="delete.jsp?param=' + tag + '" style="width: 100%; height: 300px;"></iframe>';
+                $('.modal-body').html(iFrame);
+                var title = '<p>' + titl + '</p>';
+                
+                $('.loading-spinner').removeClass('hidden');               
+                }
+             function reloadPage(){
+                location.reload(true);
+             }
+             function doSubmit() { 
+                window.open("products.jsp","_self"); 
+            } 
+            function popUpCreateModal(tag, titl) {
+                setTimeout(function () {
+                    $('.loading-spinner').addClass('hidden');
+                }, 1000);
+                $('#DeleteModal').modal('toggle');
+                var iFrame = '<iframe src="add.jsp?param=' + tag + '" style="width: 100%; height: 300px;"></iframe>';
+                $('.modal-body').html(iFrame);
+                var title = '<p>' + titl + '</p>';
+                
+                $('.loading-spinner').removeClass('hidden');               
+                }
         </script>
     </head>
 
@@ -50,6 +77,8 @@
 
         <div class="container">
             <br>
+            
+            <a class="btn btn-primary" href="#" onclick="popUpCreateModal('', '')">Add More Products</a>
             <br>
 
            <%
@@ -60,8 +89,10 @@
             %>
 
             <table  class=".table-borderless">
+              
                 <tr>
                     <%for (int j = 0; j < 4; j++) { %>
+                    
                     <td class="productTd" data-toggle="modal" data-target="modal-lg"  style="width: 25%">
 
                         <% Product productR1 = productList.get(i);%>
@@ -78,11 +109,16 @@
                                 <a class="bold">Price: $ </a><% out.print(productR1.LIST_PRICE); %><br>
 
                             </div>
-                           
+                             
                         </div>
+                                <div>
+                                        <a class="close" href="#" onclick="popUpDeleteModal('<%= productR1.PRODUCT_ID%>', '<%= productR1.PRODUCT_NAME%>')">×</a>
+                                </div>
+                        
                     </td>
-
+                    
                     <%i++;%>
+                    
                     <!-- End of loop for breaking the row --> 
                     <% } %>
                 </tr>
@@ -106,6 +142,29 @@
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- The Modal - Delete -->
+            <div class="modal" id="DeleteModal" tabindex="-1" >
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title"></h4>
+                            <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" onclick="doSubmit();">Close</button>
                         </div>
 
                     </div>

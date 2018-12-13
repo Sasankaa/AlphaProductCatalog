@@ -143,7 +143,7 @@ private static JSONArray getProducts() {
             ODS.setURL("jdbc:oracle:thin:@" + INSTANCE + "?TNS_ADMIN=" + CREDENTIALS);
             ODS.setUser(USER);
             ODS.setPassword(PASSWORD);
-            ODS.getConnection();
+            //ODS.getConnection();
             Connection conn = ODS.getConnection();
             System.out.println("Connection test Succeeded. You are connected to ATP as Admin!");
             Statement stmt = conn.createStatement();
@@ -196,6 +196,7 @@ private static JSONArray getProducts() {
             stmt.close();
             stmt = null;
             
+            conn.close();
             return products;
 
         } catch (SQLException e) {
@@ -203,6 +204,28 @@ private static JSONArray getProducts() {
             e.printStackTrace();
         }
         return products;
+    }
+public static void deleteProducts(int productID) {
+        try {
+            OracleDataSource ODS = new OracleDataSource();
+
+            ODS.setURL("jdbc:oracle:thin:@" + INSTANCE + "?TNS_ADMIN=" + CREDENTIALS);
+            ODS.setUser(USER);
+            ODS.setPassword(PASSWORD);
+            //ODS.getConnection();
+            Connection conn = ODS.getConnection();
+            System.out.println("Connection test Succeeded. You are connected to ATP as Admin!");
+            Statement stmt = conn.createStatement();
+            // Select the ENAME column from the EMP table
+            stmt.executeUpdate("DELETE FROM PRODUCTS WHERE PRODUCT_ID="+productID);            
+            // Close the Statement
+            stmt.close();
+            stmt = null;   
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Connection Unsuccessful with errror " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     private static void readProperties() {
         Properties prop = new Properties();
