@@ -12,25 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author sasanka
  */
-@WebServlet(name = "UploadServlet", urlPatterns = {"/UploadServlet"})
-@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
-                 maxFileSize=1024*1024*10,      // 10MB
-                 maxRequestSize=1024*1024*50, location="/")   // 50MB
-public class UploadServlet extends HttpServlet {
+@WebServlet(name = "SaveServlet", urlPatterns = {"/SaveServlet"})
+public class SaveServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,10 +37,10 @@ public class UploadServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UploadServlet</title>");            
+            out.println("<title>Servlet SaveServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UploadServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Sucessfully save the new product.</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -81,45 +69,26 @@ public class UploadServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SAVE_DIR = "uploadFiles";
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // gets absolute path of the web application
-        String appPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + SAVE_DIR;
-         
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
+        //processRequest(request, response);
+       
+        WSProductClient.saveProducts(request.getParameter("url"), request.getParameter("prodname"));
+       try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SaveServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Sucessfully save the new product.</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        String fileName = "";
-        for (Part part : request.getParts()) {
-            fileName = extractFileName(part);
-            // refines the fileName in case it is an absolute path
-            fileName = new File(fileName).getName();
-            part.write(savePath + File.separator + fileName);
-            
-        }
-        request.setAttribute("url", SAVE_DIR + File.separator + fileName);
-        request.setAttribute("message", "Upload has been done successfully!");
-        
-        getServletContext().getRequestDispatcher("/message.jsp").forward(
-                request, response);
     }
-private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length()-1);
-            }
-        }
-        return "";
-    }
+
     /**
      * Returns a short description of the servlet.
      *

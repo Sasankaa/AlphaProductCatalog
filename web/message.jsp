@@ -12,6 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form method="post" action="SaveServlet">
         <h2>${requestScope.message}</h2>
+        Upload Image : <input type="text" name="url" value=${requestScope.url} >
+        Product Name : <input type="text" name="prodname" >
+        <input type="submit" value="Save" />
+        </form>
     </body>
 </html>
