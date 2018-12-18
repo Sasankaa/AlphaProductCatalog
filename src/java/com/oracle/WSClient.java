@@ -27,7 +27,7 @@ public class WSClient {
         Tweets twt = new Tweets();
 
         try {
-            twt = objectMapper.readValue(new URL("https://rawgit.com/varunyn/f4eecf76915ac6bebb962140f0320a02/raw/8e42d5424052f187ef9563a8c949735998e6ad2e/tweets.json"), Tweets.class);
+            twt = objectMapper.readValue(new URL("https://raw.githubusercontent.com/derekoneil/twitter-feed/master/src/test/resources/SampleTweets.json"), Tweets.class);
 
         } catch (IOException ex) {
             Logger.getLogger(WSClient.class.getName()).log(Level.SEVERE, null, ex);

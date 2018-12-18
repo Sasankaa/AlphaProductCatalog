@@ -40,7 +40,7 @@ public class SaveServlet extends HttpServlet {
             out.println("<title>Servlet SaveServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Sucessfully save the new product.</h1>");
+            out.println("<h1>Sucessfully saved the new product.</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -83,7 +83,7 @@ public class SaveServlet extends HttpServlet {
             out.println("<title>Servlet SaveServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Sucessfully save the new product.</h1>");
+            out.println("<h1>Sucessfully saved the new product.</h1>");
             out.println("</body>");
             out.println("</html>");
         }

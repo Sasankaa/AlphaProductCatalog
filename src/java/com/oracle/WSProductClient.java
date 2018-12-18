@@ -42,7 +42,7 @@ public class WSProductClient {
      */
     public static Products requestItem() {
         readProperties();
-        getConnection();
+        //getConnection();
         JSONArray products1 = getProducts();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

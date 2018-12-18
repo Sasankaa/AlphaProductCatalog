@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <title>Delete Page</title>
     </head>
     <body>
@@ -16,7 +17,7 @@
         <%
             int productID = Integer.parseInt(request.getParameter("param"));
             WSProductClient.deleteProducts(productID);
-            out.print("Successfully Deleted your select product.");
+            out.print("Product was successfully deleted.");
             %>
        <%-- <form action="Delete" method="POST"> 
             <input type="submit" value="Delete" /> 

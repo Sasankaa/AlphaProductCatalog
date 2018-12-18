@@ -94,7 +94,7 @@
                     <%for (int j = 0; j < 4; j++) { %>
                     
                     <td class="productTd" data-toggle="modal" data-target="modal-lg"  style="width: 25%">
-
+                        <% if (i < productList.size()){ %>
                         <% Product productR1 = productList.get(i);%>
                         <!-- Pass the variable to modal --> 
                         <div class="card" onclick="popUpTheModal('<%= productR1.TWITTER_TAG%>', '<%= productR1.PRODUCT_NAME%>')">
@@ -120,7 +120,7 @@
                     <%i++;%>
                     
                     <!-- End of loop for breaking the row --> 
-                    <% } %>
+                    <% }} %>
                 </tr>
             </table>
 
