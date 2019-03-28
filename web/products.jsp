@@ -101,7 +101,7 @@
 
                             <%! String tag;%>
                             <% tag = productR1.TWITTER_TAG; %>
-                            <% out.print("<img class='productImage card-img-top' src='" + productR1.EXTERNAL_URL + "');>");%>
+                            <% out.print("<img class='productImage card-img-top' src=" + productR1.EXTERNAL_URL + ");>");%>
                             <br>
 
                             <div class="productNameDiv card-body" >
